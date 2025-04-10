@@ -8,7 +8,7 @@ const [items, setItems] = useState([
 ]);
 
 const addItem = () => {
-  if (inputText.trim()) {
+  if (inputText.trim() && inputText!='') {
     setItems([...items, inputText]);
     setInputText('');
   }
