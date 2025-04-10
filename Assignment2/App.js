@@ -14,6 +14,12 @@ const addItem = () => {
   }
 };
 
+const renderItem = ({ item }) => (
+  <View style={styles.itemContainer}>
+    <Text style={styles.itemText}>{item}</Text>
+  </View>
+);
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -22,8 +28,6 @@ export default function App() {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         numColumns={2}
-        //contentContainerStyle={styles.listContent}
-        //columnWrapperStyle={styles.columnWrapper}
       />
 
       <TextInput
