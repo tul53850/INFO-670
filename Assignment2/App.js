@@ -18,7 +18,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <FlatList
+        renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+        keyExtractor={(item, index) => index.toString()}
         numColumns={2}
+        data={items}
       />
 
       <TextInput
@@ -44,8 +47,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 50,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+    width: '50%',
   },
 });
