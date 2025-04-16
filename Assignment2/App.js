@@ -17,6 +17,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Album Tracker</Text>
+
       <FlatList
         renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
         keyExtractor={(item, index) => index.toString()}
@@ -24,18 +26,17 @@ export default function App() {
         data={items}
       />
 
-      <TextInput
-        //style={styles.input}
+      <TextInput style={styles.input}
         value={inputText}
         onChangeText={setInputText}
         placeholder="Enter new item"
         placeholderTextColor="#999"
       />
 
-      <Button 
+      <Button style={styles.button}
         title="Add" 
         onPress={addItem} 
-        color="#007bff"
+        color="#333"
       />
 
 
@@ -48,14 +49,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
-    backgroundColor: '#fff',
+    paddingBottom: 30,
+    backgroundColor: '#444',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header: {
+    fontSize: 30,
+    color: 'white',
+    paddingBottom: 5
+  },
   item: {
     padding: 10,
-    fontSize: 18,
-    height: 44,
-    width: '50%',
+    margin: 10,
+    fontSize: 24,
+    height: 60,
+    color: 'white',
+    width: '45%',
+    textAlign: 'center',
+    
+    borderWidth: 2,
+    borderColor: 'white',
+    borderStyle: 'dashed',
   },
+  input: {
+    fontSize: 20,
+    padding: 20,
+    color: 'white',
+  },
+  button: {
+    paddingBottom: 50,
+    paddingTop: 10,
+  }
 });
