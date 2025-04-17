@@ -7,9 +7,9 @@ export default function App() {
   const [inputText, setInputText] = useState('');
 
   const [items, setItems] = useState([
-    {id: 1, text: 'Item 1'}, 
-    {id: 2, text: 'Item 2'},
-    {id: 3, text: 'Item 3'}
+    {id: 1, text: 'Song 1'}, 
+    {id: 2, text: 'Song 2'},
+    {id: 3, text: 'Song 3'}
   ]);
 
   const [index, setIndex] = useState(4);
@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Grocery List</Text>
+      <Text style={styles.header}> ♪ Song List ♪ </Text>
       <Text>--- Click an entry below to delete ---</Text>
 
       <FlatList
@@ -48,7 +48,7 @@ export default function App() {
       <TextInput style={styles.input}
         value={inputText}
         onChangeText={setInputText}
-        placeholder="Enter items you need to remember!"
+        placeholder="Enter cool songs you heard here!"
         placeholderTextColor="#999"
       />
 
