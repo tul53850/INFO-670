@@ -6,21 +6,40 @@ export default function App() {
 
   const [inputText, setInputText] = useState('');
 
-  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [items, setItems] = useState([
+    {id: 1, text: 'Item 1'}, 
+    {id: 2, text: 'Item 2'},
+    {id: 3, text: 'Item 3'}
+  ]);
+
+  const [index, setIndex] = useState(4);
 
   const addItem = () => {
     if (inputText.trim()) {
-      setItems([...items, inputText]);
+      //setItems([...items.text, inputText]);
+      //setItems([...items.id, 0]);
+      const newItem = {id: index, text: inputText}
+      setItems((prevItems) => [...prevItems, newItem]);
+
+      setIndex(index+1);
       setInputText('');
     }
   };
 
+  const removeItem = (id) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Album Tracker</Text>
+      <Text style={styles.header}>Grocery List</Text>
+      <Text>--- Click an entry below to delete ---</Text>
 
       <FlatList
-        renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+        renderItem={({item}) => 
+        <Text style={styles.item} onPress={() => removeItem(item.id)}>
+          {/*item.id*/}{item.text}
+        </Text>}
         keyExtractor={(item, index) => index.toString()}
         numColumns={2}
         data={items}
@@ -29,7 +48,7 @@ export default function App() {
       <TextInput style={styles.input}
         value={inputText}
         onChangeText={setInputText}
-        placeholder="Enter new item"
+        placeholder="Enter items you need to remember!"
         placeholderTextColor="#999"
       />
 
