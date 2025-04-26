@@ -1,107 +1,111 @@
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Profile() {
 
+    
+    const [selectedColor, setSelectedColor] = useState('');
+    const [selectedGender, setSelectedGender] = useState('');
+    const [selectedUsername, setSelectedUsername] = useState('');
+
   return (
     <View style={styles.root}>
-      <View style={styles.viewProfile} testID="2:252">
-        <View style={styles.sectionTitle} testID="2:233">
-          <View style={styles.text} testID="2:234">
-            <Text style={styles.title4} testID="2:235">
+      <View style={styles.viewProfile}>
+        <View style={styles.sectionTitle}>
+          <View style={styles.text}>
+            <Text style={styles.title4}>
               {`Profile`}
             </Text>
           </View>
         </View>
-        <View style={styles.editUsername} testID="2:174">
-          <Text style={styles.title5} testID="2:175">
-            {`Username:`}
+        <View style={styles.editUsername}>
+          <Text style={styles.title5}>
+            {`Username:`} {selectedUsername}
           </Text>
         </View>
-        <View style={styles.editGender} testID="2:179">
-          <Text style={styles.title6} testID="2:180">
-            {`Gender:`}
+        <View style={styles.editGender}>
+          <Text style={styles.title6}>
+            {`Gender:`} {selectedGender}
           </Text>
         </View>
-        <View style={styles.editColor} testID="2:189">
-          <Text style={styles.title7} testID="2:190">
-            {`Favorite Color:`}
+        <View style={styles.editColor}>
+          <Text style={styles.title7}>
+            {`Favorite Color:`} {selectedColor}
           </Text>
         </View>
       </View>
-      <View style={styles.editProfile} testID="2:265">
-        <View style={styles.sectionTitle2} testID="2:266">
-          <View style={styles.text2} testID="2:267">
-            <Text style={styles.title8} testID="2:268">
+      <View style={styles.editProfile}>
+        <View style={styles.sectionTitle2}>
+          <View style={styles.text2}>
+            <Text style={styles.title8}>
               {`Edit Profile`}
             </Text>
           </View>
         </View>
-        <View style={styles.editUsername2} testID="2:269">
-          <Text style={styles.title9} testID="2:270">
+        <View style={styles.editUsername2}>
+          <Text style={styles.title9}>
             {`Username`}
           </Text>
-          <TextInput style={styles.textfield} placeholder='Enter Username'></TextInput>
-          <Text style={styles.info} testID="2:273">
+          <TextInput 
+            style={styles.textfield} 
+            placeholder='Enter Username'
+            value={selectedUsername}
+            onChangeText={setSelectedUsername}
+            >
+          </TextInput>
+          <Text style={styles.info}>
             {`Choose a unique username`}
           </Text>
         </View>
-        <View style={styles.editGender2} testID="2:274">
-          <Text style={styles.title10} testID="2:275">
+        <View style={styles.editGender2}>
+          <Text style={styles.title10}>
             {`Gender`}
           </Text>
-          <View style={styles.chipGroup} testID="2:276">
-            <TouchableOpacity style={styles.chip} testID="2:277">
-              <Text style={styles.text4} testID="2:278">
+          <View style={styles.chipGroup}>
+            <TouchableOpacity style={styles.chip} onPress={() => setSelectedGender('male')}>
+              <Text style={styles.text4}>
                 {`Male`}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.chip2} testID="2:279">
-              <Text style={styles.text5} testID="2:280">
+            <TouchableOpacity style={styles.chip2} onPress={() => setSelectedGender('female')}>
+              <Text style={styles.text5}>
                 {`Female`}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.chip3} testID="2:281">
-              <Text style={styles.text6} testID="2:282">
+            <TouchableOpacity style={styles.chip3} onPress={() => setSelectedGender('other')}>
+              <Text style={styles.text6}>
                 {`Other`}
               </Text>
             </TouchableOpacity>
           </View>
-          <Text style={styles.info2} testID="2:283">
+          <Text style={styles.info2}>
             {`Select your gender`}
           </Text>
         </View>
-        <View style={styles.editColor2} testID="2:284">
-          <Text style={styles.title11} testID="2:285">
-            {`Favorite Color (Dropdown)`}
+        <View style={styles.editColor2}>
+          <Text style={styles.title11}>
+            {`Favorite Color`}
           </Text>
-          <View style={styles.chipGroup2} testID="2:286">
-            <View style={styles.chip4} testID="2:287">
-              <Text style={styles.text7} testID="2:288">
-                {`Blue`}
-              </Text>
-            </View>
-            <View style={styles.chip5} testID="2:289">
-              <Text style={styles.text8} testID="2:290">
-                {`Red`}
-              </Text>
-            </View>
-            <View style={styles.chip6} testID="2:291">
-              <Text style={styles.text9} testID="2:292">
-                {`Green`}
-              </Text>
-            </View>
-            <View style={styles.chip7} testID="2:293">
-              <Text style={styles.text10} testID="2:294">
-                {`Yellow`}
-              </Text>
-            </View>
-          </View>
-          <Text style={styles.info3} testID="2:295">
-            {`Choose your favorite color`}
+          <Picker
+            selectedValue={selectedColor}
+            onValueChange={(itemValue) => setSelectedColor(itemValue)}
+            style={{ height: 50, width: 200 }}
+          >
+            <Picker.Item label="Choose a color..." value="" />
+            <Picker.Item label="Red" value="red" />
+            <Picker.Item label="Blue" value="blue" />
+            <Picker.Item label="Green" value="green" />
+            <Picker.Item label="Yellow" value="yellow" />
+            <Picker.Item label="Purple" value="purple" />
+          </Picker>
+          <Text style={styles.info3}>
+            {`Choose your favorite color from the dropdown above`}
           </Text>
         </View>
-        <TouchableOpacity style={styles.saveButton} testID="2:296">
-          <Text style={styles.text11} testID="2:297">
+        <TouchableOpacity style={styles.saveButton}>
+          <Text style={styles.text11}>
             {`Save`}
           </Text>
         </TouchableOpacity>
