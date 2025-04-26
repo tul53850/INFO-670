@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Profile() {
@@ -9,6 +9,37 @@ export function Profile() {
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
     const [selectedUsername, setSelectedUsername] = useState('');
+
+    const saveData = async() => {
+        if(!isEmpty(selectedColor) && !isEmpty(selectedGender) && !isEmpty(selectedUsername)){
+            try {
+                await AsyncStorage.setItem('userName', selectedUsername);
+                await AsyncStorage.setItem('gender', selectedGender);
+                await AsyncStorage.setItem('color', selectedColor);
+                alert('Saved!');
+            } catch (e) {
+                console.error('Error saving data!', e);
+            }
+        }
+        else{alert('Please fill out all fields!')}
+    };
+
+    const loadData = async () => {
+        try {
+          const name = await AsyncStorage.getItem('userName');
+          if (name) setSelectedUsername(name);
+          const gender = await AsyncStorage.getItem('gender');
+          if (gender) setSelectedGender(gender);
+          const color = await AsyncStorage.getItem('color');
+          if (color) setSelectedColor(color);
+        } catch (e) {
+          console.error('Error loading data', e);
+        }
+      };
+    
+      useEffect(() => {
+        loadData();
+      }, []);
 
   return (
     <View style={styles.root}>
@@ -104,7 +135,7 @@ export function Profile() {
             {`Choose your favorite color from the dropdown above`}
           </Text>
         </View>
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity style={styles.saveButton} onPress={saveData}>
           <Text style={styles.text11}>
             {`Save`}
           </Text>
