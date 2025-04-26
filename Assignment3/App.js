@@ -1,25 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import { Profile } from './Profile';
+import { Gallery } from './Gallery';
+import { Image } from './Image';
+import { useState } from 'react';
 
 export default function App() {
+  const [showProfile, setShowProfile] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+
   return (
     <View style={styles.container}>
       
-      <Profile/>
+      {showImage && <Image/>}
+      {showProfile && <Profile/> /*conditional only if pressed in nav*/}
+      {showGallery && <Gallery/>}
       
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.tab} title='Gallery'>
+        <TouchableOpacity 
+          style={styles.tab} 
+          title='Gallery'
+          onPress={() => {setShowGallery(!showGallery); setShowImage(false); setShowProfile(false)}}
+          >
           <Text style={styles.title}>
             {`Gallery`}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tab} title='Picture'>
+        <TouchableOpacity 
+          style={styles.tab} 
+          title='Picture'
+          onPress={() => {setShowImage(!showImage); setShowGallery(false); setShowProfile(false)}}
+          >
           <Text style={styles.title}>
             {`Picture Viewing`}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tab} title='Profile'>
+        <TouchableOpacity 
+          style={styles.tab} 
+          title='Profile'
+          onPress={() => {setShowProfile(!showProfile); setShowGallery(false); setShowImage(false)}}
+          >
           <Text style={styles.title}>
             {`Profile`}
           </Text>
