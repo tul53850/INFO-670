@@ -7,11 +7,13 @@ import { useState } from 'react';
 
 const appImages = [
   require('./assets/icon.png'),
-  require('./assets/icon.png'),
-  require('./assets/icon.png'),
-  require('./assets/icon.png'),
-  require('./assets/icon.png'),
-  require('./assets/icon.png'),
+  require('./assets/01.jpg'),
+  require('./assets/07.gif'),
+  require('./assets/08.gif'),
+  require('./assets/35.gif'),
+  require('./assets/75.gif'),
+  require('./assets/90.gif'),
+  require('./assets/128.gif'),
 ];
 
 export default function App() {
