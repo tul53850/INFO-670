@@ -122,7 +122,7 @@ export function Profile() {
           <Picker
             selectedValue={selectedColor}
             onValueChange={(itemValue) => setSelectedColor(itemValue)}
-            style={{ height: 50, width: 200 }}
+            style={{ height: 50, width: 200 , /*textAlign: 'left'*/}}
           >
             <Picker.Item label="Choose a color..." value="" />
             <Picker.Item label="Red" value="red" />
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: 24,
+    paddingTop: 25,
   },
   viewProfile: {
     paddingTop: 0,

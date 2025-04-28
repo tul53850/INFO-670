@@ -2,20 +2,31 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import { Profile } from './Profile';
 import { Gallery } from './Gallery';
-import { Image } from './Image';
+import { ImageView } from './Image';
 import { useState } from 'react';
+
+const appImages = [
+  require('./assets/icon.png'),
+  require('./assets/icon.png'),
+  require('./assets/icon.png'),
+  require('./assets/icon.png'),
+  require('./assets/icon.png'),
+  require('./assets/icon.png'),
+];
 
 export default function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
+  const [selectedValue, setSelectedValue] = useState(require('./assets/icon.png'));
+
   return (
     <View style={styles.container}>
       
-      {showImage && <Image/>}
+      {showImage && <ImageView img={selectedValue}/>}
       {showProfile && <Profile/> /*conditional only if pressed in nav*/}
-      {showGallery && <Gallery/>}
+      {showGallery && <Gallery images={appImages} onSelect={setSelectedValue}/>}
       
       <View style={styles.bottomNav}>
         <TouchableOpacity 
