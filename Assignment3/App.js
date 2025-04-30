@@ -6,14 +6,14 @@ import { ImageView } from './Image';
 import { useState } from 'react';
 
 const appImages = [
-  require('./assets/icon.png'),
-  require('./assets/01.jpg'),
-  require('./assets/07.gif'),
-  require('./assets/08.gif'),
-  require('./assets/35.gif'),
-  require('./assets/75.gif'),
-  require('./assets/90.gif'),
-  require('./assets/128.gif'),
+  {source: require('./assets/icon.png'), caption: 'App Icon'},
+  {source: require('./assets/01.jpg'), caption: 'ROCK!!!!!!!'},
+  {source: require('./assets/07.gif'), caption: 'Emo Heart'},
+  {source: require('./assets/08.gif'), caption: 'Grunge Top'},
+  {source: require('./assets/35.gif'), caption: 'Oh, so Emo...'},
+  {source: require('./assets/75.gif'), caption: 'So long yo'},
+  {source: require('./assets/90.gif'), caption: 'ESCUCHA!'},
+  {source: require('./assets/128.gif'),caption: '<333333333'},
 ];
 
 export default function App() {
@@ -21,14 +21,14 @@ export default function App() {
   const [showGallery, setShowGallery] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
-  const [selectedValue, setSelectedValue] = useState(require('./assets/icon.png'));
+  const [selectedValue, setSelectedValue] = useState({source: require('./assets/icon.png'), caption: 'App Icon'});
 
   return (
     <View style={styles.container}>
       
-      {showImage && <ImageView img={selectedValue}/>}
+      {showImage && <ImageView img={selectedValue} showGall={setShowGallery} showImg={setShowImage}/>}
       {showProfile && <Profile/> /*conditional only if pressed in nav*/}
-      {showGallery && <Gallery images={appImages} onSelect={setSelectedValue}/>}
+      {showGallery && <Gallery images={appImages} onSelect={setSelectedValue} showImg={setShowImage} showGall={setShowGallery}/>}
       
       <View style={styles.bottomNav}>
         <TouchableOpacity 

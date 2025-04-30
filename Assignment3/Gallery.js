@@ -5,11 +5,11 @@ const numColumns = 3;
 const screenWidth = Dimensions.get('window').width;
 const imageSize = screenWidth / numColumns /1.2; //1.2 for spacing
 
-export function Gallery({images, onSelect}) {
+export function Gallery({images, onSelect, showImg, showGall}) {
 
   const renderItem = ({ item }) => (
-    <Pressable onPress={() => onSelect(item)}>
-      <Image source={item} style={styles.image}/>
+    <Pressable onPress={() => {onSelect(item); showImg(true); showGall(false)}}>
+      <Image source={item.source} style={styles.image}/>
     </Pressable>
   );
 

@@ -1,6 +1,6 @@
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
-export function ImageView({img}) {
+export function ImageView({img, showGall, showImg}) {
 
   return (
     <View style={styles.root}>
@@ -16,21 +16,21 @@ export function ImageView({img}) {
           <View style={styles.card}>
             <View style={styles.imageContainer}>
               <View style={styles.image}>
-                <Image source={img} style={styles.img}></Image>
+                <Image source={img.source} style={styles.img}></Image>
               </View>
             </View>
             <View style={styles.textContent}>
               <Text style={styles.title2}>
-                {`Caption`}
+                {img.caption}
               </Text>
             </View>
           </View>
         </View>
-        <View style={styles.chip}>
+        <TouchableOpacity style={styles.chip} onPress={() => {showImg(false); showGall(true)}}>
           <Text style={styles.text2}>
             {`Back`}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
