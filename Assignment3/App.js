@@ -18,14 +18,14 @@ const appImages = [
 
 export default function App() {
   const [showProfile, setShowProfile] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
+  const [showGallery, setShowGallery] = useState(true);
   const [showImage, setShowImage] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState({source: require('./assets/icon.png'), caption: 'App Icon'});
 
   return (
     <View style={styles.container}>
-      
+
       {showImage && <ImageView img={selectedValue} showGall={setShowGallery} showImg={setShowImage}/>}
       {showProfile && <Profile/> /*conditional only if pressed in nav*/}
       {showGallery && <Gallery images={appImages} onSelect={setSelectedValue} showImg={setShowImage} showGall={setShowGallery}/>}
