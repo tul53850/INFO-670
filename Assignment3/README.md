@@ -12,7 +12,7 @@ Using the app is simple:
 1. Open the app.
 2. Click an image.
 3. View the image and the caption!!
-4. (Optional) Click the account button to customize your account details <3
+4. (Optional) Click the account button to customize your account details and save to device <3 (Error Checking for Blanks)
 
 ## Screenshots
 
