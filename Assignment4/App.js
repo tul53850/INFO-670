@@ -9,7 +9,8 @@ export default function App() {
   useEffect(() => {fetchData();}, []);
   const fetchData = async() => {
     try{
-      const response = await axios.get('http://localhost:5000/api/data');
+      //const response = await axios.get('http://localhost:5000/api/data');
+      const response = await axios.get('http://192.168.0.11:5000/api/data');
       setData(response.data.message);
     } catch (error) {console.log(error);}
   };

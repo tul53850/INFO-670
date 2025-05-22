@@ -1,4 +1,4 @@
-const express = require('express'); //NODE.JS & EXPRESS
+const express = require('express'); //Run this file like 'node server.js' in another terminal
 const bodyParser = require('body-parser'); // JSON body parser
 const app = express();
 const PORT = process.env.PORT || 5000;
