@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, FlatList } from 'react-native';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5000'; //Must set to your own IP if using expo app
 
 export default function App() {
 
